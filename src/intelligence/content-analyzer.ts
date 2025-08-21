@@ -105,7 +105,7 @@ export class ContentAnalyzer {
 
     // Find dominant tone
     const dominantTone = Object.entries(normalizedScores)
-      .reduce((a, b) => normalizedScores[a[0]] > normalizedScores[b[0]] ? a : b)[0] as keyof typeof normalizedScores;
+      .reduce((a, b) => normalizedScores[a[0]] > normalizedScores[b[0]] ? a : b)[0] as 'professional' | 'casual' | 'technical' | 'formal' | 'conversational';
 
     // Calculate confidence based on clarity of tone
     const maxScore = Math.max(...Object.values(normalizedScores));

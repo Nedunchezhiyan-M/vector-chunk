@@ -122,10 +122,10 @@ export class AdaptiveOptimizer {
   } {
     if (this.performanceHistory.length < 3) {
       return {
-        chunkSize: { current: 512, recommended: 512, confidence: 0 };
-        overlap: { current: 50, recommended: 50, confidence: 0 };
-        threshold: { current: 0.0, recommended: 0.0, confidence: 0 };
-        maxResults: { current: 10, recommended: 10, confidence: 0 };
+        chunkSize: { current: 512, recommended: 512, confidence: 0 },
+        overlap: { current: 50, recommended: 50, confidence: 0 },
+        threshold: { current: 0.0, recommended: 0.0, confidence: 0 },
+        maxResults: { current: 10, recommended: 10, confidence: 0 },
         overallImprovement: 0
       };
     }
@@ -141,9 +141,9 @@ export class AdaptiveOptimizer {
     const currentMaxResults = 10; // Default
 
     const chunkSizeConfidence = this.calculateConfidence('chunkSize');
-    const overlapConfidence = this.calculateConfidence('overlap');
-    const thresholdConfidence = this.calculateConfidence('threshold');
-    const maxResultsConfidence = this.calculateConfidence('maxResults');
+    const overlapConfidence = 0.5; // Default confidence for overlap
+    const thresholdConfidence = 0.5; // Default confidence for threshold
+    const maxResultsConfidence = 0.5; // Default confidence for maxResults
 
     const overallImprovement = this.calculateOverallImprovement();
 
