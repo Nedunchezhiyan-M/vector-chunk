@@ -1,29 +1,57 @@
 {
   "name": "vector-chunk",
-  "version": "1.0.0",
-  "description": "Lightweight, dependency-free vector processing and chunking package optimized for Elasticsearch",
+  "version": "2.0.0",
+  "description": "🚀 Next-Gen Content Intelligence - The most powerful, lightweight, and intelligent vector search package for modern applications. Zero dependencies, AI-powered search, real-time processing, content analysis, tone detection, style matching, DNA fingerprinting, auto-summarization, and adaptive optimization.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "build:prod": "node build.js",
     "dev": "tsc --watch",
+    "example": "node examples/advanced-intelligence.ts",
     "prepublishOnly": "npm run build:prod"
   },
   "keywords": [
-    "vector",
-    "chunking",
-    "elasticsearch",
-    "embeddings",
+    "vector-search",
+    "content-intelligence",
+    "semantic-search",
+    "document-search",
+    "text-chunking",
+    "vector-similarity",
+    "cosine-similarity",
+    "content-processing",
+    "search-engine",
     "nlp",
-    "text-processing",
-    "machine-learning"
+    "machine-learning",
+    "artificial-intelligence",
+    "content-analysis",
+    "knowledge-base",
+    "document-management",
+    "zero-dependencies",
+    "typescript",
+    "javascript",
+    "nodejs",
+    "browser",
+    "edge-computing",
+    "tone-detection",
+    "style-analysis",
+    "content-dna",
+    "auto-summarization",
+    "content-fusion",
+    "adaptive-optimization",
+    "vector",
+    "search",
+    "semantic",
+    "similarity",
+    "chunking",
+    "content",
+    "performance"
   ],
   "author": "Nedunchezhiyan M",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Nedunchezhiyan-M/vector-chunk.git"
+    "url": "git+https://github.com/Nedunchezhiyan-M/vector-chunk.git"
   },
   "bugs": {
     "url": "https://github.com/Nedunchezhiyan-M/vector-chunk/issues"
@@ -40,6 +68,7 @@
     "dist",
     "README.md",
     "USAGE.md",
-    "LICENSE"
+    "LICENSE",
+    "examples"
   ]
 }

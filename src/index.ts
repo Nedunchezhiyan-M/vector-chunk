@@ -5,15 +5,23 @@ import type {
   ChunkingConfig,
   VectorStoreConfig,
   SearchResult,
-  ElasticsearchDocument,
-  ProcessingOptions,
-  DataType
+  SearchOptions,
+  ContentAnalysis,
+  ContentTone,
+  WritingStyle,
+  ContentDNA,
+  PerformanceMetrics,
+  OptimizationConfig,
+  AdaptiveConfig,
+  ContentFusion
 } from './types';
 
 // Import core classes
-import { VectorMath } from './utils/vector-math';
 import { TextChunker } from './chunking/text-chunker';
-import { VectorStore } from './storage/vector-store';
+import { VectorSearchEngine } from './search/vector-search-engine';
+import { ContentAnalyzer } from './intelligence/content-analyzer';
+import { AdaptiveOptimizer } from './optimization/adaptive-optimizer';
+import { ContentFusionEngine } from './fusion/content-fusion';
 
 // Re-export types
 export type {
@@ -22,88 +30,161 @@ export type {
   ChunkingConfig,
   VectorStoreConfig,
   SearchResult,
-  ElasticsearchDocument,
-  ProcessingOptions,
-  DataType
+  SearchOptions,
+  ContentAnalysis,
+  ContentTone,
+  WritingStyle,
+  ContentDNA,
+  PerformanceMetrics,
+  OptimizationConfig,
+  AdaptiveConfig,
+  ContentFusion
 };
 
 // Re-export core classes
-export { VectorMath, TextChunker, VectorStore };
+export { 
+  TextChunker, 
+  VectorSearchEngine,
+  ContentAnalyzer,
+  AdaptiveOptimizer,
+  ContentFusionEngine
+};
 
-// Main classes for easy importing
-export class VectorChunker {
-  private textChunker: TextChunker;
+// Enhanced main search class with all intelligent features
+export class VectorSearch {
+  private searchEngine: VectorSearchEngine;
+  private contentAnalyzer: ContentAnalyzer;
+  private adaptiveOptimizer: AdaptiveOptimizer;
+  private contentFusionEngine: ContentFusionEngine;
 
-  constructor(config: Partial<ChunkingConfig> = {}) {
-    this.textChunker = new TextChunker(config);
+  constructor(
+    searchConfig: Partial<VectorStoreConfig> = {},
+    optimizationConfig: Partial<OptimizationConfig> = {},
+    adaptiveConfig: Partial<AdaptiveConfig> = {}
+  ) {
+    this.searchEngine = new VectorSearchEngine(searchConfig);
+    this.contentAnalyzer = new ContentAnalyzer();
+    this.adaptiveOptimizer = new AdaptiveOptimizer(optimizationConfig, adaptiveConfig);
+    this.contentFusionEngine = new ContentFusionEngine();
   }
 
   /**
-   * Chunk text using the configured strategy
+   * Search content using the exact function from user's request
    */
-  chunkText(text: string, metadata: Record<string, any> = {}): Chunk[] {
-    return this.textChunker.chunkText(text, metadata);
+  async searchContent(
+    content: string, 
+    searchText: string
+  ): Promise<Array<{
+    content: string;
+    similarity: number;
+    position: string;
+  }>> {
+    return this.searchEngine.searchContent(content, searchText);
   }
 
   /**
-   * Update chunking configuration
+   * Add chunks to search index
    */
-  updateConfig(config: Partial<ChunkingConfig>): void {
-    this.textChunker.updateConfig(config);
+  addChunks(chunks: Chunk[]): void {
+    this.searchEngine.addChunks(chunks);
   }
 
   /**
-   * Get current configuration
+   * Search indexed chunks
    */
-  getConfig(): ChunkingConfig {
-    return this.textChunker.getConfig();
+  async search(
+    query: string, 
+    options: Partial<SearchOptions> = {}
+  ): Promise<SearchResult[]> {
+    return this.searchEngine.search(query, options);
+  }
+
+  /**
+   * Get search index statistics
+   */
+  getIndexStats() {
+    return this.searchEngine.getIndexStats();
+  }
+
+  /**
+   * Update search configuration
+   */
+  updateConfig(config: Partial<VectorStoreConfig>): void {
+    this.searchEngine.updateConfig(config);
+  }
+
+  // New Content Intelligence Methods
+
+  /**
+   * Analyze content comprehensively (tone, style, DNA)
+   */
+  async analyzeContent(content: string): Promise<ContentAnalysis> {
+    return this.contentAnalyzer.analyzeContent(content);
+  }
+
+  /**
+   * Fuse multiple content sources into coherent summary
+   */
+  async fuseContent(sources: string[]): Promise<ContentFusion> {
+    return this.contentFusionEngine.fuseSources(sources);
+  }
+
+  /**
+   * Get optimization recommendations
+   */
+  getOptimizationRecommendations() {
+    return this.adaptiveOptimizer.getOptimizationRecommendations();
+  }
+
+  /**
+   * Get performance analytics
+   */
+  getPerformanceAnalytics() {
+    return this.adaptiveOptimizer.getPerformanceAnalytics();
+  }
+
+  /**
+   * Get optimization statistics
+   */
+  getOptimizationStats() {
+    return this.adaptiveOptimizer.getOptimizationStats();
+  }
+
+  /**
+   * Record performance metrics for optimization
+   */
+  recordPerformanceMetrics(metrics: Omit<PerformanceMetrics, 'timestamp'>): void {
+    this.adaptiveOptimizer.recordMetrics(metrics);
+  }
+
+  /**
+   * Get fusion insights and recommendations
+   */
+  getFusionInsights(fusion: ContentFusion) {
+    return this.contentFusionEngine.getFusionInsights(fusion);
+  }
+
+  /**
+   * Update optimization configuration
+   */
+  updateOptimizationConfig(config: Partial<OptimizationConfig>): void {
+    this.adaptiveOptimizer.updateConfig(config);
+  }
+
+  /**
+   * Update adaptive configuration
+   */
+  updateAdaptiveConfig(config: Partial<AdaptiveConfig>): void {
+    this.adaptiveOptimizer.updateAdaptiveConfig(config);
+  }
+
+  /**
+   * Reset optimization history
+   */
+  resetOptimization(): void {
+    this.adaptiveOptimizer.resetOptimization();
   }
 }
-
-// Utility functions
-export const utils = {
-  /**
-   * Create a random vector of specified dimension
-   */
-  createRandomVector: (dimension: number, min = -1, max = 1) => 
-    VectorMath.random(dimension, min, max),
-
-  /**
-   * Create a zero vector of specified dimension
-   */
-  createZeroVector: (dimension: number) => 
-    VectorMath.zero(dimension),
-
-  /**
-   * Normalize a vector to unit length
-   */
-  normalizeVector: (vector: Vector) => 
-    VectorMath.normalize(vector),
-
-  /**
-   * Calculate cosine similarity between two vectors
-   */
-  cosineSimilarity: (a: Vector, b: Vector) => 
-    VectorMath.cosineSimilarity(a, b),
-
-  /**
-   * Calculate Euclidean distance between two vectors
-   */
-  euclideanDistance: (a: Vector, b: Vector) => 
-    VectorMath.euclideanDistance(a, b),
-
-  /**
-   * Calculate Manhattan distance between two vectors
-   */
-  manhattanDistance: (a: Vector, b: Vector) => 
-    VectorMath.manhattanDistance(a, b),
-
-  /**
-   * Calculate dot product between two vectors
-   */
-  dotProduct: (a: Vector, b: Vector) => 
-    VectorMath.dotProduct(a, b)
-};
 
 // Default configurations
 export const defaultConfigs = {
@@ -121,16 +202,23 @@ export const defaultConfigs = {
     maxResults: 10,
     threshold: 0.0
   },
-  processing: {
-    normalizeVectors: false,
-    validateInput: true,
-    batchSize: 1000,
-    timeout: 30000
+  optimization: {
+    enableAutoOptimization: true,
+    learningRate: 0.1,
+    performanceThreshold: 0.8,
+    optimizationInterval: 60000,
+    maxOptimizationAttempts: 10
+  },
+  adaptive: {
+    enableLearning: true,
+    performanceTracking: true,
+    autoTuning: true,
+    optimizationStrategy: 'balanced' as const
   }
 };
 
 // Version information
-export const VERSION = '1.0.0';
+export const VERSION = '3.0.0';
 export const AUTHOR = 'Nedunchezhiyan M';
 export const LICENSE = 'MIT';
 

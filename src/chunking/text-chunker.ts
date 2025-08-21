@@ -1,6 +1,4 @@
 import { Chunk, ChunkingConfig } from '../types';
-import { VectorMath } from '../utils/vector-math';
-
 export class TextChunker {
   private config: ChunkingConfig;
 
@@ -198,18 +196,20 @@ export class TextChunker {
     
     return {
       id,
-      content,
-      vector,
+      content: content,
+      vector: vector,
       metadata: {
-        ...metadata,
-        chunkIndex,
+        chunkIndex: chunkIndex,
         timestamp: new Date().toISOString(),
         length: content.length,
-        wordCount: content.split(/\s+/).length
+        wordCount: content.split(/\s+/).length,
+        ...metadata
       },
-      chunkIndex,
+      chunkIndex: chunkIndex,
       startPosition: 0, // Would be calculated in real implementation
-      endPosition: content.length
+      endPosition: content.length,
+      documentId: metadata.documentId || 'unknown',
+      chunkType: this.determineChunkType(content)
     };
   }
 
@@ -252,6 +252,15 @@ export class TextChunker {
    */
   getConfig(): ChunkingConfig {
     return { ...this.config };
+  }
+
+  /**
+   * Determine the type of chunk based on content
+   */
+  private determineChunkType(content: string): 'text' | 'paragraph' | 'section' {
+    if (content.includes('\n\n')) return 'section';
+    if (content.includes('\n')) return 'paragraph';
+    return 'text';
   }
 }
 
