@@ -1,10 +1,6 @@
 // Core exports
 export { VectorMath } from './utils/vector-math';
 export { TextChunker } from './chunking/text-chunker';
-export { StreamingChunker, createStreamingChunker, processFileStream } from './chunking/streaming-chunker';
-export { ParallelChunker, createParallelChunker } from './chunking/parallel-chunker';
-export { IndexedChunker, createIndexedChunker } from './chunking/indexed-chunker';
-export { LazyChunker, createLazyChunker } from './chunking/lazy-chunker';
 export { VectorStore } from './storage/vector-store';
 
 // Type exports
@@ -120,6 +116,6 @@ export const defaultConfigs = {
 
 // Version information
 export const VERSION = '1.0.0';
-export const AUTHOR = 'Your Name';
+export const AUTHOR = 'Nedunchezhiyan M';
 export const LICENSE = 'MIT';
 
