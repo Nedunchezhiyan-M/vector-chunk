@@ -1,10 +1,5 @@
-// Core exports
-export { VectorMath } from './utils/vector-math';
-export { TextChunker } from './chunking/text-chunker';
-export { VectorStore } from './storage/vector-store';
-
-// Type exports
-export type {
+// Import types first
+import type {
   Vector,
   Chunk,
   ChunkingConfig,
@@ -14,6 +9,26 @@ export type {
   ProcessingOptions,
   DataType
 } from './types';
+
+// Import core classes
+import { VectorMath } from './utils/vector-math';
+import { TextChunker } from './chunking/text-chunker';
+import { VectorStore } from './storage/vector-store';
+
+// Re-export types
+export type {
+  Vector,
+  Chunk,
+  ChunkingConfig,
+  VectorStoreConfig,
+  SearchResult,
+  ElasticsearchDocument,
+  ProcessingOptions,
+  DataType
+};
+
+// Re-export core classes
+export { VectorMath, TextChunker, VectorStore };
 
 // Main classes for easy importing
 export class VectorChunker {
