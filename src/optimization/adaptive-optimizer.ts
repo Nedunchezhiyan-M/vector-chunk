@@ -81,8 +81,7 @@ export class AdaptiveOptimizer {
       overlap: optimalOverlap
     };
 
-    console.log(`🔧 Auto-optimized chunk size: ${currentConfig.chunkSize} → ${optimalSize}`);
-    console.log(`🔧 Auto-optimized overlap: ${currentConfig.overlap} → ${optimalOverlap}`);
+    // Auto-optimized chunk size and overlap
 
     return optimizedConfig;
   }
@@ -104,8 +103,7 @@ export class AdaptiveOptimizer {
       maxResults: optimalMaxResults
     };
 
-    console.log(`🔧 Auto-optimized threshold: ${currentConfig.threshold} → ${optimalThreshold}`);
-    console.log(`🔧 Auto-optimized max results: ${currentConfig.maxResults} → ${optimalMaxResults}`);
+    // Auto-optimized threshold and max results
 
     return optimizedConfig;
   }
@@ -216,7 +214,7 @@ export class AdaptiveOptimizer {
     this.performanceHistory = [];
     this.optimizationCount = 0;
     this.lastOptimization = Date.now();
-    console.log('🔄 Optimization history reset');
+    // Optimization history reset
   }
 
   /**
@@ -252,15 +250,9 @@ export class AdaptiveOptimizer {
   }
 
   private autoOptimize(): void {
-    console.log('🚀 Starting auto-optimization...');
-    
-    // This would be called by the main search engine
-    // to apply optimizations to its configuration
-    
+    // Auto-optimization
     this.optimizationCount++;
     this.lastOptimization = Date.now();
-    
-    console.log(`✅ Auto-optimization completed (attempt ${this.optimizationCount})`);
   }
 
   private calculateOptimalChunkSize(): number {

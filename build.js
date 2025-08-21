@@ -16,9 +16,9 @@ if (fs.existsSync('./dist')) {
 fs.mkdirSync('./dist', { recursive: true });
 
 try {
-  // Run TypeScript compilation
+  // Run TypeScript compilation without source maps
   console.log('📝 Compiling TypeScript...');
-  execSync('npx tsc', { stdio: 'inherit' });
+  execSync('npx tsc --sourceMap false --declarationMap false --removeComments true', { stdio: 'inherit' });
   
   // Copy package.json to dist
   console.log('📦 Copying package files...');
@@ -40,6 +40,21 @@ try {
   if (fs.existsSync('./LICENSE')) {
     fs.copyFileSync('./LICENSE', './dist/LICENSE');
   }
+  
+  // Remove any remaining map files to reduce size
+  console.log('🧹 Removing source maps...');
+  function removeMapFiles(dir) {
+    const files = fs.readdirSync(dir);
+    files.forEach(file => {
+      const filePath = path.join(dir, file);
+      if (fs.statSync(filePath).isDirectory()) {
+        removeMapFiles(filePath);
+      } else if (file.endsWith('.map')) {
+        fs.unlinkSync(filePath);
+      }
+    });
+  }
+  removeMapFiles('./dist');
   
   console.log('✅ Build completed successfully!');
   console.log('📁 Output directory: ./dist');

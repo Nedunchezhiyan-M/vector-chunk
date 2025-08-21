@@ -28,7 +28,7 @@ export class VectorSearchEngine {
    */
   addChunks(chunks: Chunk[]): void {
     this.chunks.push(...chunks);
-    console.log(`📚 Indexed ${chunks.length} chunks`);
+    // Indexed chunks
   }
 
   /**
@@ -47,8 +47,7 @@ export class VectorSearchEngine {
     const results = this.performSimilaritySearch(queryVector, options);
     
     const searchTime = Date.now() - startTime;
-    console.log(`⚡ Search completed in ${searchTime}ms`);
-    console.log(`📋 Found ${results.length} results\n`);
+    // Search completed
     
     return results;
   }
@@ -64,15 +63,14 @@ export class VectorSearchEngine {
     similarity: number;
     position: string;
   }>> {
-    console.log(`📄 Processing content...`);
-    console.log(`📊 Content size: ${content.length} characters`);
+    // Processing content
     
     // Process content into chunks
     const chunks = this.createChunksFromContent(content);
-    console.log(`🔧 Created ${chunks.length} chunks\n`);
+    // Created chunks
     
     // Search
-    console.log(`🔍 Searching for: "${searchText}"`);
+    // Searching for content
     const startTime = Date.now();
     
     const searchChunk = this.createChunksFromContent(searchText)[0];
@@ -89,13 +87,7 @@ export class VectorSearchEngine {
       .sort((a, b) => b.similarity - a.similarity)
       .slice(0, 5);
     
-    console.log(`⚡ Search completed in ${searchTime}ms\n`);
-    console.log('📋 Top Results:');
-    topResults.forEach((result, i) => {
-      console.log(`${i + 1}. Similarity: ${(result.similarity * 100).toFixed(1)}%`);
-      console.log(`   Content: "${result.content}"`);
-      console.log(`   Position: ${result.position}\n`);
-    });
+    // Search completed
     
     return topResults;
   }
@@ -116,7 +108,7 @@ export class VectorSearchEngine {
    */
   clearIndex(): void {
     this.chunks = [];
-    console.log('🗑️ Search index cleared');
+    // Search index cleared
   }
 
   /**
