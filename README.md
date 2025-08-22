@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Zero Dependencies](https://img.shields.io/badge/Zero%20Dependencies-100%25-green)](https://www.npmjs.com/package/vector-chunk)
 
-## ✨ What's New in v3.0.0
+## ✨ What's New in v2.0.1
 
 - 🧠 **Content Intelligence Engine**: Analyze content tone, style, and generate DNA fingerprints
 - 🎯 **Tone Detection**: Automatically detect professional, casual, technical, formal, and conversational tones
@@ -211,18 +211,6 @@ searchEngine.recordPerformanceMetrics(metrics);
 const recommendations = searchEngine.getOptimizationRecommendations();
 ```
 
-## 📚 Examples
-
-Run the examples to see all features in action:
-
-```bash
-# Basic search example
-npm run example
-
-# Advanced intelligence demo
-npm run example:advanced
-```
-
 ## 🔧 Configuration Options
 
 ### **Search Configuration**
@@ -258,7 +246,7 @@ We welcome contributions! Please see our contributing guidelines for details.
 
 MIT License - see LICENSE file for details.
 
-## 🙏 Acknowledgments
+## 🙏 Acknowledgements
 
 - Built with pure JavaScript/TypeScript
 - No external dependencies or AI services

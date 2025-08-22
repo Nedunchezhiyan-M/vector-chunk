@@ -1,6 +1,6 @@
 {
   "name": "vector-chunk",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "🚀 Next-Gen Content Intelligence - The most powerful, lightweight, and intelligent vector search package for modern applications. Zero dependencies, AI-powered search, real-time processing, content analysis, tone detection, style matching, DNA fingerprinting, auto-summarization, and adaptive optimization.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
